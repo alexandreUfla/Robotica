@@ -1,6 +1,6 @@
 clear all; close all; clc;
 
-% 1) Rotation about current x-axis
+%% 1) Rotation about current x-axis
 theta = pi/2;
 R01 = rotx(theta);
 
@@ -11,7 +11,7 @@ figure(2);
 tranimate(R01);
 pause;
 
-%% 2) Rotation about current z-axis
+% 2) Rotation about current z-axis
 phi = pi/2;
 R02 = R01*rotz(phi); % post-multiply!
 
@@ -22,7 +22,7 @@ figure(2);
 tranimate(R02);
 pause;
 
-%% 3) Rotation about fixed z-axis
+% 3) Rotation about fixed z-axis
 alpha = pi/4;
 R03 = rotz(alpha)*R02 % pre-multiply!
 
@@ -33,5 +33,5 @@ figure(2);
 tranimate(R03);
 pause;
 
-%% Rotations do not commute
+% Rotations do not commute
 rotx(pi/2)*rotz(pi/2) - rotz(pi/2)*rotx(pi/2)
