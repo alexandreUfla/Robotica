@@ -1,0 +1,7 @@
+clc; clear all; close all;
+
+H0_1 = matriz_referencia(1,0,0,-36,0,(sqrt(3)/2),(-1/2),81,0,(1/2),(sqrt(3)/2),81);
+
+P1 = matriz_referencia(1,0,0,102,0,1,0,321,0,0,1,99);
+
+P0 = inv(H0_1)*P1
