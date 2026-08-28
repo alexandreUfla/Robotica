@@ -1,0 +1,21 @@
+clc; close all; clear all;
+
+teta1 = 50;
+teta1_p = 0;
+teta1_2p = 0;
+
+T2i = 1;
+T3i = 2;
+T2f = 2;
+T3f = 3;
+T1i = 0;
+T1f = 1;
+
+L1 = [1 zeros(1,13)];
+L2 = [0 1 zeros(1,12)];
+L3 = [0 0 2 zeros(1,11)];
+
+MAT = [L1;L2;L3;L4;L5;L6;L7;L8;L9;L10;L11;L12;L13;L14]
+VET = [teta;teta_p;teta_2pp]
+
+coeficientes = inv(MAT)*VET

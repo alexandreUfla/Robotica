@@ -1,0 +1,69 @@
+%% Exercício 1 - Velocidades do Motoman MH5F
+clc; clear all; close all;
+
+teta1 = 50; % graus
+teta2 = 0; % graus
+teta3 = 80; % graus
+teta4 = 90; % graus
+teta5 = 0; % graus
+teta6 = 20; % graus
+q_ponto = [2;4;1;1;0;2];
+
+% Denavit
+DH01 = [88,-90,330,teta1];
+DH12 = [310,180,0,teta2-90];
+DH23 = [40,-90,0,teta3];
+DH34 = [0,90,-305,teta4];
+DH45 = [0,-90,0,teta5];
+DH56 = [0,0,-80,teta6];
+
+% Jacobiano
+J = jacobiano(DH01,DH12,DH23,DH34,DH45,DH56)
+
+% Velocidades [v,w]
+v_w = J*q_ponto
+
+%% Exercício 2 - Manipulador Cilíndrico
+clc; clear all; close all;
+
+r = 15; % in
+alfa = deg2rad(30); % rad
+l = 10; % in
+
+r_ponto = 0.1; % in/s
+alfa_ponto = 0.05; % rad/s
+l_ponto = 0.2; % in/s
+
+% Velocidades [x_ponto; y_ponto; z_ponto]
+xyz_ponto = [cos(alfa) -r*sin(alfa) 0;sin(alfa) r*cos(alfa) 0;0 0 1]*[r_ponto;alfa_ponto;l_ponto]
+
+%% Exercício 3 - Manipulador Esférico
+clc; clear all; close all;
+
+r = 20; % in
+beta = deg2rad(60); % rad
+gama = deg2rad(30); % rad
+
+c_beta = cos(beta);
+s_beta = sin(beta);
+c_gama = cos(gama);
+s_gama = sin(gama);
+
+r_ponto = 2; % in/s
+beta_ponto = 0.05; % rad/s
+gama_ponto = 0.1; % rad/s
+
+l1 = [c_gama*s_beta r*c_gama*c_beta -r*s_gama*s_beta];
+l2 = [s_beta*s_gama r*c_beta*s_gama r*s_beta*c_gama];
+l3 = [c_beta -r*s_beta 0];
+
+J = [l1;l2;l3];
+q_ponto = [r_ponto;beta_ponto;gama_ponto];
+
+% Velocidades [x_ponto; y_ponto; z_ponto]
+xyz_ponto = J*q_ponto
+
+%% Exercício 4 - Robô de 6 eixos
+teta_i = 50; % graus
+teta_f = 80; % graus
+t_i = 0; % segundos
